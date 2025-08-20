@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Image Gallery</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    color: #fff;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  }
+  button {
+    background: #ff6f61;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+  button:hover {
+    background: #e85c50;
+    transform: scale(1.05);
+  }
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .img-card {
+    width: 250px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .img-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+
+<h1>🌟 Random Image Gallery</h1>
+<button onclick="getImage()">Get Random Image</button>
+<div class="gallery" id="gallery"></div>
+
+<script>
+async function getImage() {
+  // Random image from Picsum Photos API
+  const imgUrl = `https://picsum.photos/800/600?random=${Date.now()}`;
+
+  const card = document.createElement('div');
+  card.classList.add('img-card');
+
+  const img = document.createElement('img');
+  img.src = imgUrl;
+  img.alt = "Random Image";
+
+  card.appendChild(img);
+  document.getElementById('gallery').appendChild(card);
+}
+</script>
+
+</body>
+</html>
